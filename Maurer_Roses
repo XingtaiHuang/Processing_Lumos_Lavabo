@@ -1,0 +1,64 @@
+float n=6;
+float d=71;
+float sc;
+
+void setup() {
+  size(1000, 1000);
+  strokeWeight(1);
+}
+
+void draw() {
+  background(0);
+  translate(width/2, height/2);
+  rotate(sc/5);
+  shapeMode(CENTER);
+  noStroke();
+  fill(0, 10*sc, 240, 200);
+  beginShape();
+  for (float i=0; i<=361; i++) {
+    float rad=radians(i);
+    float k=rad*d;
+    float r=abs(150.0*sin(sc/10)+300)*sin(n*k);
+    float x=r*cos(k);
+    float y=r*sin(k);
+    vertex(x, y);
+  }
+  endShape();
+
+  //OUTLINERS
+
+  rotate(sc/8);
+  shapeMode(CENTER);
+  stroke(255, 0, 25);
+  fill(255, 0, 20*sc, 100);
+  beginShape();
+  for (float i=0; i<=361; i++) {
+    float rad=radians(i);
+    float k=rad;
+    float r=abs(150.0*sin(sc/5)+300)*sin(n*k);
+    float x=r*cos(k);
+    float y=r*sin(k);
+    vertex(x, y); 
+  }
+  endShape();
+
+  //voider
+  rotate(sc/6);
+  shapeMode(CENTER);
+  fill(0);
+  noStroke();
+  beginShape();
+  for (float i=0; i<=361; i++) {
+    float rad=radians(i);
+    float k=rad;
+    float r=abs(50.0*sin(sc/10)+30)*sin(n*k);
+    float x=r*cos(k);
+    float y=r*sin(k);
+    vertex(x, y);
+  }
+  endShape();
+
+  sc+=0.1;
+  n=abs(6*sin(sc/200)+6);
+  d=abs(3*cos(sc/50)+6);
+}
